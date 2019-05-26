@@ -32,11 +32,9 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     break;
    }
   }
-//  if(idx==-1) System.out.println(inner.keys.get(inner.keys.size()-1) + "size is " + inner.keys.size()); 
+
   int childIndex = idx ==-1 ? inner.keys.size() : idx;
-//      int idx = inner.getLoc(k);
-//      int childIndex = idx>=0 ?idx : -(idx)-1;
-           node = inner.children.get(childIndex);
+   node = inner.children.get(childIndex);
            
   }
 
@@ -78,10 +76,8 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     break;
    }
   }
-//  if(idx==-1) System.out.println(inner.keys.get(inner.keys.size()-1) + "size is " + inner.keys.size()); 
   int childIndex = idx ==-1 ? inner.keys.size() : idx;
-//      int idx = inner.getLoc(k);
-//      int childIndex = idx>=0 ?idx : -(idx)-1;
+
            node = inner.children.get(childIndex);
            
   }
@@ -121,12 +117,10 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     newRoot.keys.add(result.pivotPoint); // add the pivot point to the new root
     newRoot.children.add(result.left); // add the left pointer to the new root
     newRoot.children.add(result.right); // add the right pointer to the new root
-//    System.out.println("root" + result.pivotPoint);
-//    result.right.keys.clear();
-    
+
     //modify the old root to new root
     root = newRoot;
-//    System.out.println("Temp " +temp);
+
    }
  }
  
@@ -135,7 +129,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
  
  // abstract class for node , node has INode and LeafNode , has all the common variables and functions
  abstract class AbstractNode{
-  List<K> keys; // 
+  List<K> keys; 
   
   
   abstract int getLoc(K k);
@@ -188,7 +182,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     int idx = getLoc(key); //
     int valueIndex = idx >= 0 ? idx : -idx - 1;
     if(idx >=0) { // if the key in the index is equal to "key", it means duplicate key and value
-//      values.set(valueIndex, value);
+
         keys.add(idx, key);
         values.add(idx, value);
         
@@ -200,7 +194,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
       values.add(valueIndex, value);
     }
     System.out.println("In the LeafNode , Insert Key = " + key + " , Value = " +value );
-//    int vIdx = idx>=0 ? idx : -idx -1; // 
+
   }
   
   @Override
@@ -213,11 +207,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
    }
    else 
     return null;
-//   int valueIndex = idx >= 0 ? idx : -idx - 1;
-//   if(keyIndex >=0) {
-//    return values.get(keyIndex);
-//   }
-//   return null;
+
   }
 
   @Override
@@ -232,8 +222,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
    //clear the key and value from mid to the end of list, because already insert to another new node
    keys.subList(mid, keys.size()).clear();
    values.subList(mid, keys.size()).clear();
-//   System.out.println(keys);
-//   System.out.println(sibling.keys);
+
    sibling.next = next; // here : next is null, so sibling.next is null
    next = sibling; // set the current leaf to the new sibling;
    
@@ -271,16 +260,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     return keys.size();
    }
    else return loc;
-//   int loc = Collections.binarySearch(keys, k);
-//   
-//   return loc;
-   
-//   for(int i=0;i<keys.size();i++) { // eg 1 , 3 , 5 ,7 . If key is 4
-//    if(keys.get(i).compareTo(k)>=0) { //  1>= 4(index 0)  -> 3 >=4(index 1) ->5>=4 (idx 2), so we want to insert to index 2
-//      return i;
-//    }
-//   }
-//   return keys.size();// if all keys in the list are smaller than k , return length of keys
+
   }
   
  }
@@ -323,17 +303,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
 //      sibling.keys
       root = newRoot;
       
-//      if(s.pivotPoint.compareTo(result.pivotPoint) <0) {
-//       this.insertEntry((K)s.pivotPoint , (V)s.right);
-//      }
-//      else {
-//       System.out.println("Root Insert");
-//       result.right.insertEntry((K)s.pivotPoint , (V)s.right);
-//      }
-//      
-//      return result;
-//     }
-//     else {
+
      }
      else {
       this.insertEntry((K)s.pivotPoint , (V)s.right); // ok
@@ -354,14 +324,13 @@ System.out.println(inner.keys.size() + " " +inner.keys);
     keys.add(idx, key);
     children.add(idx, (AbstractNode)value);
     
-//    children.set(valueIndex, (AbstractNode)value);
    }
    else {
     keys.add(valueIndex, key);
     children.add(valueIndex+1, (AbstractNode)value);
    }
    System.out.println("Internal Node , Insert Key = " + key + " , Value = " +value );
-//   System.out.println(keys);
+
   }
 
   @Override
@@ -370,9 +339,9 @@ System.out.println(inner.keys.size() + " " +inner.keys);
    int idx = getLoc(k);
    int valueIndex = idx >= 0 ? idx : -idx - 1;
    AbstractNode node = children.get(valueIndex);
-//   System.out.println("In the Internal nODE key is " + this.keys.get(idx));
+
    return node.getV(k);
-//   return null;
+
   }
 
   @Override
@@ -388,8 +357,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
    System.out.println(sibling.keys + " children " + sibling.children.get(0).keys);
    
    
-//   this.keys.remove(mid-1);
-//   this.children.remove(mid-1);
+
    //clear the key and chilren from mid to the end of list, because already insert to another new node
    keys.subList(mid, keys.size()).clear();
    children.subList(mid+1, keys.size()+1).clear();
@@ -413,12 +381,11 @@ System.out.println(inner.keys.size() + " " +inner.keys);
    return false;  }
   
   AbstractNode choose_subtree(K k) {
-//   int idx = Collections.binarySearch(keys, k);
-//   int childrenIdx = idx >=0 ? idx +1 : -idx - 1;
+
    int idx = getLoc(k);
    int valueIndex = idx >= 0 ? idx : -idx - 1;
    return children.get(valueIndex);
-//   return children.get(childrenIdx);
+
      
   }
 
@@ -428,12 +395,7 @@ System.out.println(inner.keys.size() + " " +inner.keys);
 
    int loc = Collections.binarySearch(keys, k);
     return loc;
-//   for(int i=0;i<keys.size();i++) { // eg 1 , 3 , 5 ,7 . If key is 4
-//    if(keys.get(i).compareTo(k)>=0) { //  1>= 4(index 0)  -> 3 >=4(index 1) ->5>=4 (idx 2), so we want to insert to index 2
-//      return i;
-//    }
-//   }
-//   return keys.size();// if all keys in the list are smaller than k , return length of keys
+
   }
   
  }
